@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/get_fore"
-        android:title="获取前台应用进程"
+        android:title="UsageStats列表"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/get_config"
+        android:title="ConfigurationStats列表"
         app:showAsAction="never" />
 </menu>
