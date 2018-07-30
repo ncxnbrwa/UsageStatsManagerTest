@@ -9,16 +9,27 @@
         android:id="@+id/packageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="200dp"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         tools:text="包名" />
 
     <TextView
-        android:id="@+id/lastUseTime"
+        android:id="@+id/installTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/packageName"
         android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
+        tools:text="安装时间" />
+
+    <TextView
+        android:id="@+id/lastUseTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/installTime"
+        android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
         tools:text="上次使用时间" />
 
     <TextView
@@ -27,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lastUseTime"
         android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
         tools:text="使用范围" />
 
     <TextView
@@ -35,12 +47,41 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/timeRange"
         android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
         tools:text="前台占用时间" />
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dp"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/systemLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/timeInFore"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/system_bg"
+        android:text="系统应用"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/non_systemLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/timeInFore"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/non_system_bg"
+        android:text="非系统应用"
+        android:textColor="@android:color/white" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/timeInFore"
         android:layout_marginTop="8dp"
-        android:background="#f0f0f0" />
+        android:background="#BDBDBD" />
 </RelativeLayout>

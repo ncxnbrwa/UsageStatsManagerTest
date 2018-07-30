@@ -30,6 +30,16 @@ android {
             }
         }
     }
+    //gradle插件3.0以上写法
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${applicationId}-${releaseTime()}.apk"
+        }
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
