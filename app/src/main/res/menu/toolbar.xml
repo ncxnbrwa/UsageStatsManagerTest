@@ -10,4 +10,8 @@
         android:id="@+id/get_config"
         android:title="ConfigurationStats列表"
         app:showAsAction="never" />
+
+    <item android:id="@+id/get_event"
+        android:title="获取Event列表"
+        app:showAsAction="never"/>
 </menu>
