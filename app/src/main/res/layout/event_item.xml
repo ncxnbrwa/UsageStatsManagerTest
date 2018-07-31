@@ -15,12 +15,22 @@
         tools:text="包名" />
 
     <TextView
+        android:id="@+id/className"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/packageName"
+        tools:text="类名:" />
+
+    <TextView
         android:id="@+id/eventType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/packageName"
+        android:layout_below="@+id/className"
         tools:text="事件类型:"/>
 
     <TextView

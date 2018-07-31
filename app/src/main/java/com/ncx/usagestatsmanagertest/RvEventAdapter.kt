@@ -34,6 +34,7 @@ class RvEventAdapter(val context: Context, val list: MutableList<UsageEvents.Eve
             itemView.eventType.text = "事件类型:${conversionEventType(event.eventType)}"
             itemView.appLogo.setImageDrawable(pm.getApplicationIcon(event.packageName))
             itemView.occurTime.text = "发生时间:${formatTime(event.timeStamp)}"
+            itemView.className.text = "类名:${event.className}"
         }
 
         fun conversionEventType(type: Int): String {
