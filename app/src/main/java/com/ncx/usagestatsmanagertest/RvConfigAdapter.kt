@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.configlist_item.view.*
 /**
  * Created by ncx on 2018/7/26.
  */
-class RvConfigAdapter(val context: Context, val configList: MutableList<ConfigurationStats>, val pm: PackageManager)
+class RvConfigAdapter(val context: Context, val configList: MutableList<ConfigurationStats>
+                      , val pm: PackageManager)
     : RecyclerView.Adapter<RvConfigAdapter.ConfigHolder>() {
 
     override fun onBindViewHolder(holder: ConfigHolder?, position: Int) {

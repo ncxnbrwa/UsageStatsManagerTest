@@ -6,7 +6,9 @@ import android.app.usage.UsageEvents;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -75,15 +77,30 @@ public class Main2Activity extends AppCompatActivity {
         Log.e(TAG, "结束时间:" + endTime);
     }
 
+    /**
+     * 通过使用UsageStatsManager获取，此方法是ndroid5.0A之后提供的API
+     * 必须：
+     * 1. 此方法只在android5.0以上有效
+     * 2. AndroidManifest中加入此权限<uses-permission xmlns:tools="http://schemas.android.com/tools" android:name="android.permission.PACKAGE_USAGE_STATS"
+     * tools:ignore="ProtectedPermissions" />
+     * 3. 打开手机设置，点击安全-高级，在有权查看使用情况的应用中，为这个App打上勾
+     */
     @SuppressLint("NewApi")
     private void getForeList() {
         getTime();
         UsageStatsManager usm = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
         List<UsageStats> foreList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, startTime, endTime);
-        if (foreList != null && !foreList.isEmpty()) {
-            list.setAdapter(new RvAdapter(this, foreList, getPackageManager()));
+        if (Utils.HasPermission(this)) {
+            if (foreList != null && !foreList.isEmpty()) {
+                list.setAdapter(new RvAdapter(this, foreList, getPackageManager()));
+            } else {
+                Toast.makeText(this, "没有前台进程", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "没有前台进程", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "权限不够\n请打开手机设置，点击安全-高级，在有权查看使用情况的应用中，为这个App打上勾", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
 
     }
