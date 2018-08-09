@@ -32,7 +32,7 @@ public class Main2Activity extends AppCompatActivity {
     private RecyclerView list;
     private Toolbar toolbar;
     long startTime, endTime;
-    private String TAG = "UsageStatsManagerTest";
+    private static final String TAG = "UsageStatsManagerTest";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +90,7 @@ public class Main2Activity extends AppCompatActivity {
         getTime();
         UsageStatsManager usm = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
         List<UsageStats> foreList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, startTime, endTime);
+        //判断是否有对应权限
         if (Utils.HasPermission(this)) {
             if (foreList != null && !foreList.isEmpty()) {
                 list.setAdapter(new RvAdapter(this, foreList, getPackageManager()));
@@ -97,7 +98,8 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(this, "没有前台进程", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "权限不够\n请打开手机设置，点击安全-高级，在有权查看使用情况的应用中，为这个App打上勾", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "权限不够\n请打开手机设置，点击安全-高级，在有权查看使用情况的应用中，为这个App开启权限", Toast.LENGTH_LONG).show();
+            //跳转设置页
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -125,11 +127,29 @@ public class Main2Activity extends AppCompatActivity {
         UsageStatsManager usm = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
         UsageEvents events = usm.queryEvents(startTime, endTime);
         while (events.hasNextEvent()) {
+            //循环获取所有Event
             UsageEvents.Event event = new UsageEvents.Event();
             events.getNextEvent(event);
             eventList.add(event);
         }
         if (eventList != null && !eventList.isEmpty()) {
+//            List<EventBean> eventBeanList = new ArrayList<>();
+//            int count = 1;
+//            for (int i = 0; i < eventList.size(); i++) {
+//                UsageEvents.Event eventi = eventList.get(i);
+//                count = 1;
+//                for (int j = i + 1; j < eventList.size(); j++) {
+//                    if (eventList.get(j).getClassName().equals(eventi.getClassName()) &&
+//                            eventList.get(j).getEventType() == eventi.getEventType()) {
+//                        count++;
+//                        eventList.remove(j);
+//                        j--;
+//                    }
+//                }
+//                eventBeanList.add(new EventBean(eventi.getPackageName(), Utils.conversionEventType(eventi.getEventType()),
+//                        eventi.getClassName(), count));
+//            }
+//            list.setAdapter(new RvEvent2Adapter(this, eventBeanList, getPackageManager()));
             list.setAdapter(new RvEventAdapter(this, eventList, getPackageManager()));
         } else {
             Toast.makeText(this, "没有Event数据", Toast.LENGTH_SHORT).show();

@@ -22,6 +22,7 @@ public class Utils {
             PackageManager packageManager = context.getPackageManager();
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 0);
             AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+            //检查get_usage_stats功能是否允许
             int mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, applicationInfo.uid, applicationInfo.packageName);
             return (mode == AppOpsManager.MODE_ALLOWED);
         } catch (PackageManager.NameNotFoundException e) {
@@ -42,25 +43,25 @@ public class Utils {
                 typeStr = "NONE";
                 break;
             case 1:
-                typeStr = "MOVE_TO_FOREGROUND";
+                typeStr = "MOVE_TO_FOREGROUND"; //Activity被置于前台显示时事件
                 break;
             case 2:
-                typeStr = "MOVE_TO_BACKGROUND";
+                typeStr = "MOVE_TO_BACKGROUND"; //Activity被置于后台时事件
                 break;
             case 3:
-                typeStr = "END_OF_DAY";
+                typeStr = "END_OF_DAY"; //今天的最后一个记录事件
                 break;
             case 4:
                 typeStr = "CONTINUE_PREVIOUS_DAY";
                 break;
             case 5:
-                typeStr = "CONFIGURATION_CHANGE";
+                typeStr = "CONFIGURATION_CHANGE"; //系统配置变化的事件
                 break;
             case 6:
                 typeStr = "SYSTEM_INTERACTION";
                 break;
             case 7:
-                typeStr = "USER_INTERACTION";
+                typeStr = "USER_INTERACTION"; //一条通知显示给用户看时，会记录此事件
                 break;
             case 8:
                 typeStr = "SHORTCUT_INVOCATION";
