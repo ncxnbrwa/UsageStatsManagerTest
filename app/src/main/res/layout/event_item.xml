@@ -18,20 +18,20 @@
         android:id="@+id/className"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/packageName"
+        android:layout_marginTop="8dp"
         android:maxWidth="200dp"
         android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        android:layout_below="@+id/packageName"
         tools:text="类名:" />
 
     <TextView
         android:id="@+id/eventType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
         android:layout_below="@+id/className"
-        tools:text="事件类型:"/>
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        tools:text="事件类型:" />
 
     <TextView
         android:id="@+id/occurTime"
@@ -49,4 +49,11 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="6dp"
         tools:src="@mipmap/ic_launcher" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/occurTime"
+        android:layout_marginTop="8dp"
+        android:background="#aaa" />
 </RelativeLayout>

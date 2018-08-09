@@ -31,7 +31,7 @@ class RvEvent2Adapter(val context: Context, val list: MutableList<EventBean>, va
                     "(${pm.getApplicationLabel(packageInfo.applicationInfo)})"
             itemView.eventType.text = "事件类型:${event.eventType}"
             itemView.appLogo.setImageDrawable(pm.getApplicationIcon(event.packageName))
-            itemView.occurTime.text = "发生时间:"
+            itemView.occurTime.text = "发生次数:${event.eventCount}"
             itemView.className.text = "类名:${event.className}"
         }
 

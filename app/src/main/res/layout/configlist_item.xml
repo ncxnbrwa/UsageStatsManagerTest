@@ -20,5 +20,5 @@
         android:layout_height="1dp"
         android:layout_below="@+id/timeInFore"
         android:layout_marginTop="8dp"
-        android:background="#f0f0f0" />
+        android:background="#aaa" />
 </LinearLayout>
