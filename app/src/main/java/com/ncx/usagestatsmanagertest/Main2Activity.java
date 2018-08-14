@@ -1,7 +1,6 @@
 package com.ncx.usagestatsmanagertest;
 
 import android.annotation.SuppressLint;
-import android.app.usage.ConfigurationStats;
 import android.app.usage.UsageEvents;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
@@ -58,9 +57,6 @@ public class Main2Activity extends AppCompatActivity {
             case R.id.get_fore:
                 getForeList();
                 break;
-            case R.id.get_config:
-                getConfigList();
-                break;
             case R.id.get_event:
                 getEvent();
                 break;
@@ -94,6 +90,8 @@ public class Main2Activity extends AppCompatActivity {
         //判断是否有对应权限
         if (Utils.HasPermission(this)) {
             if (foreList != null && !foreList.isEmpty()) {
+                Toast.makeText(this, "获取前台进程成功,共" + foreList.size() + "条数据"
+                        , Toast.LENGTH_SHORT).show();
                 list.setAdapter(new RvAdapter(this, foreList, getPackageManager()));
             } else {
                 Toast.makeText(this, "没有前台进程", Toast.LENGTH_SHORT).show();
@@ -106,19 +104,6 @@ public class Main2Activity extends AppCompatActivity {
             startActivity(intent);
         }
 
-    }
-
-    @SuppressLint("NewApi")
-    private void getConfigList() {
-        getTime();
-        UsageStatsManager usm = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
-        List<ConfigurationStats> configList = usm.queryConfigurations(UsageStatsManager.INTERVAL_DAILY
-                , startTime, endTime);
-        if (configList != null && !configList.isEmpty()) {
-            list.setAdapter(new RvConfigAdapter(this, configList, getPackageManager()));
-        } else {
-            Toast.makeText(this, "没有前台进程", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @SuppressLint("NewApi")
@@ -155,6 +140,8 @@ public class Main2Activity extends AppCompatActivity {
                             TextUtils.isEmpty(eventi.getClassName()) ? "" : eventi.getClassName(), count));
                 }
             }
+            Toast.makeText(this, "获取Event数据成功,共" + eventBeanList.size() + "条数据"
+                    , Toast.LENGTH_SHORT).show();
             list.setAdapter(new RvEvent2Adapter(this, eventBeanList, getPackageManager()));
 //            list.setAdapter(new RvEventAdapter(this, eventList, getPackageManager()));
         } else {
