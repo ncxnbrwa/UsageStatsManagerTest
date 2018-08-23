@@ -6,6 +6,7 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -60,8 +61,24 @@ public class Main2Activity extends AppCompatActivity {
             case R.id.get_event:
                 getEvent();
                 break;
+            case R.id.get_install_app:
+                getInstallApp();
+                break;
         }
         return true;
+    }
+
+    private void getInstallApp() {
+        //获取安装APP
+        PackageManager pm = getPackageManager();
+        new GetInstallAppTask(pm, new GetInstallAppTask.GetInstallCallback() {
+            @Override
+            public void getInstallCallback(List<AppInfo> infoList) {
+                Toast.makeText(Main2Activity.this, "获取到" + infoList.size() + "条安装应用信息"
+                        , Toast.LENGTH_LONG).show();
+                list.setAdapter(new InstallAppAdapter(Main2Activity.this, infoList));
+            }
+        }).execute();
     }
 
     private void getTime() {

@@ -6,7 +6,13 @@
         android:title="UsageStats列表"
         app:showAsAction="never" />
 
-    <item android:id="@+id/get_event"
+    <item
+        android:id="@+id/get_event"
         android:title="获取Event列表"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/get_install_app"
+        android:title="获取安装列表"
+        app:showAsAction="never" />
 </menu>

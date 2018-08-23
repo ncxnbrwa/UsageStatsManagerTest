@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/packageName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        tools:text="包名" />
+
+    <TextView
+        android:id="@+id/installTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/packageName"
+        android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
+        tools:text="第一次安装时间" />
+
+    <TextView
+        android:id="@+id/lastUpdateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/installTime"
+        android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
+        tools:text="上次更新时间" />
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastUpdateTime"
+        android:layout_marginTop="8dp"
+        android:maxWidth="200dp"
+        tools:text="版本号" />
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dp"
+        tools:src="@mipmap/ic_launcher" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/version"
+        android:layout_marginTop="8dp"
+        android:background="#aaa" />
+</RelativeLayout>
