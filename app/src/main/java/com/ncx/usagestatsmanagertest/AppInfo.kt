@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 
 /**
  * Created by iiMedia on 2018/8/23.
+ * APP信息类
  */
 data class AppInfo(
         val name: String,
